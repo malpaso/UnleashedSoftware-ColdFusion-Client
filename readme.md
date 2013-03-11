@@ -1,6 +1,6 @@
 UnleashedSoftware ColdFusion Client
 ===================================
-Bill Tindal, 2013 (dbloh7@hotmail.com)
+Bill Tindal, 2013
 
 ** work in progress **
 
