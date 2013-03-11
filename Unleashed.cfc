@@ -207,6 +207,20 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** PRODUCT GROUPS **/
+
+	public any function getProductGroups(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/ProductGroups');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PURCHASE ORDERS **/
 
 	public any function getPurchaseOrders(
