@@ -305,6 +305,55 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** STOCK ADJUSTMENTS **/
+
+	public any function getStockAdjustments(
+		any warehouseCode = "",
+		any productCode = "",
+		any adjustmentType = "",
+		any adjustmentDate = ""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/StockAdjustments');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function getPurchaseOrder(required any adjustment_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/StockAdjustments/#arguments.adjustment_id#');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function createPurchaseOrder(required any adjustment_id, required any adjustment){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl() & '/StockAdjustments/#arguments.adjustment_id#' );
+
+		service = addParams(service,arguments.adjustment);
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRIVATE **/
 
 	private any function getSignature(any request="", required any key){
