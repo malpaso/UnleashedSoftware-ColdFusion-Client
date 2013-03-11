@@ -40,6 +40,29 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** BILL OF MATERIALS **/
+
+	public any function getBillOfMaterials(
+		any guid = "",
+		any product = "",
+		any billofmaterialslines = "",
+		any lastmodifiedon = ""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/BillOfMaterials');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** CUSTOMERS **/
 
 	public any function getCustomers(
