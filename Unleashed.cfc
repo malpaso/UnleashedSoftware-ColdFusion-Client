@@ -207,6 +207,56 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** SALES INVOICES **/
+
+	public any function getSalesInvoices(
+		any customerCode = "",
+		any startDate = "",
+		any endDate = "",
+		any modifiedSince = "",
+		any orderNumber = ""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/SalesInvoices');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function getSalesInvoice(required any invoice_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/SalesInvoices/#arguments.invoice_id#');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function createSalesInvoice(required any invoice_id, required any invoice){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl() & '/SalesInvoices/#arguments.invoice_id#' );
+
+		service = addParams(service,arguments.invoice);
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRIVATE **/
 
 	private any function getSignature(any request="", required any key){
