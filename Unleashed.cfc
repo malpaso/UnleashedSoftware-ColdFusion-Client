@@ -470,6 +470,20 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** TAXES **/
+
+	public any function getTaxes(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/Taxes');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** UNIT OF MEASURES **/
 
 	public any function getUnitOfMeasures(){
