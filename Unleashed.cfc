@@ -512,6 +512,36 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** WAREHOUSE STOCK TRANSFERS **/
+
+	public any function getWarehouseStockTransfers(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/WarehouseStockTransfers');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function getWarehouseStockTransfer(required any transfer_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/WarehouseStockTransfers/#arguments.transfer_id#');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRIVATE **/
 
 	private any function getSignature(any request="", required any key){
