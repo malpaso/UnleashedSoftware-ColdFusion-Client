@@ -102,6 +102,24 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** CUSTOMER TYPES **/
+
+	public any function getCustomerTypes(any typeName = ""){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/CustomerTypes');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRODUCTS **/
 
 	public any function getProducts(
