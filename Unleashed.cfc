@@ -143,6 +143,20 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** PAYMENT TERMS **/
+
+	public any function getPaymentTerms(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/PaymentTerms');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRODUCTS **/
 
 	public any function getProducts(
