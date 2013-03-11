@@ -436,6 +436,20 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** UNIT OF MEASURES **/
+
+	public any function getUnitOfMeasures(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/UnitOfMeasures');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRIVATE **/
 
 	private any function getSignature(any request="", required any key){
