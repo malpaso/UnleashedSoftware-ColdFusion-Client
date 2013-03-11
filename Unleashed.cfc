@@ -207,6 +207,54 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** PURCHASE ORDERS **/
+
+	public any function getPurchaseOrders(
+		any supplierCode = "",
+		any startDate = "",
+		any endDate = ""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/PurchaseOrders');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function getPurchaseOrder(required any order_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/PurchaseOrders/#arguments.order_id#');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function createPurchaseOrder(required any order_id, required any order){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl() & '/PurchaseOrders/#arguments.order_id#' );
+
+		service = addParams(service,arguments.order);
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** SALES INVOICES **/
 
 	public any function getSalesInvoices(
