@@ -333,6 +333,20 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** SALES ORDER GROUPS **/
+
+	public any function getSalesOrderGroups(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/SalesOrderGroups');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** STOCK ADJUSTMENTS **/
 
 	public any function getStockAdjustments(
