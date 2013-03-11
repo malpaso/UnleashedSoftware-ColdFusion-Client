@@ -40,6 +40,68 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** CUSTOMERS **/
+
+	public any function getCustomers(
+		any customerCode = "",
+		any customerName = "",
+		any modifiedSince = "",
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/customers');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function getCustomer(required any customer_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/customers/#arguments.customer_id#');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function createCustomer(required any customer_id, required any customer){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl() & '/customers/#arguments.customer_id#' );
+
+		service = addParams(service,arguments.customer);
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function updateCustomer(required any customer_id, required any customer){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl() & '/customers/#arguments.customer_id#' );
+
+		service = addParams(service,arguments.customer);
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRODUCTS **/
 
 	public any function getProducts(
