@@ -382,6 +382,40 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** STOCK ON HAND **/
+
+	public any function getStockOnHand(
+		any warehouseCode = "",
+		any warehouseName = "",
+		any endDate = ""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/StockOnHand');
+
+		urlParams = buildUrlParams(arguments);
+
+		service = addUrlParams(service,arguments);
+
+		signature = getSignature( urlParams,getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function getStockOnHandForProduct(required any product_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/StockOnHand/#arguments.adjustment_id#');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** SUPPLIERS **/
 
 	public any function getSuppliers(){
