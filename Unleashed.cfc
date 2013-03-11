@@ -354,6 +354,60 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** SUPPLIERS **/
+
+	public any function getSuppliers(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/Suppliers');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function getSupplier(required any supplier_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/Suppliers/#arguments.supplier_id#');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function createSupplier(required any supplier_id, required any supplier){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl() & '/Suppliers/#arguments.supplier_id#' );
+
+		service = addParams(service,arguments.supplier);
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
+	public any function updateSupplier(required any supplier_id, required any supplier){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl() & '/Suppliers/#arguments.supplier_id#' );
+
+		service = addParams(service,arguments.supplier);
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRIVATE **/
 
 	private any function getSignature(any request="", required any key){
