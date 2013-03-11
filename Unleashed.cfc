@@ -498,6 +498,20 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
+	/** WAREHOUSES **/
+
+	public any function getWarehouses(){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl() & '/Warehouses');
+
+		signature = getSignature( "",getApiKey() );
+
+		return call(service,signature);
+
+	}
+
 	/** PRIVATE **/
 
 	private any function getSignature(any request="", required any key){
