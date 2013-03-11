@@ -68,7 +68,7 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 	public any function getCustomers(
 		any customerCode = "",
 		any customerName = "",
-		any modifiedSince = "",
+		any modifiedSince = ""
 	){
 
 		var service = createHTTPService("GET");
@@ -370,7 +370,7 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
-	public any function getPurchaseOrder(required any adjustment_id){
+	public any function getStockAdjustment(required any adjustment_id){
 
 		var service = createHTTPService("GET");
 
@@ -382,7 +382,7 @@ component name="Unleashed" output="false" accessors="true" hint="A ColdFusion wr
 
 	}
 
-	public any function createPurchaseOrder(required any adjustment_id, required any adjustment){
+	public any function createStockAdjustment(required any adjustment_id, required any adjustment){
 
 		var service = createHTTPService("POST");
 
